@@ -9,3 +9,8 @@ Realizei diversos ajustes manuais para garantir fidelidade ao design, como **esp
 Na Parte 1, implementei também um **menu mobile responsivo**, que não estava completamente definido, para melhorar a experiência em telas menores.
 
 Usei o PNG e as propriedades de CSS do Figma como referência para refinar o resultado final.
+
+## 🔗 Links do Projeto
+
+- Parte 1: https://parte-1-blue.vercel.app/
+- Parte 2: https://parte-2-fawn.vercel.app/
