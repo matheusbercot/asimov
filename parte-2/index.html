@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<title>Python + IA</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="bg-glow"></div>
+
+<section class="hero">
+
+  <!-- LEFT -->
+  <div class="hero-content">
+
+    <div class="badge">🚀 Comece do zero</div>
+
+    <h1 class="headline">
+      Aprenda Python do zero e construa <span>projetos reais com IA</span>
+    </h1>
+
+    <p class="subheadline">
+      O curso mais prático do Brasil para quem quer entrar em tecnologia sem enrolação
+    </p>
+
+    <ul class="features">
+      <li>+40 horas de conteúdo direto ao ponto</li>
+      <li>Projetos com Python + IA desde o módulo 1</li>
+      <li>Suporte da comunidade com +20.000 alunos</li>
+      <li>Certificado reconhecido pelo mercado</li>
+    </ul>
+
+    <div class="cta-group">
+      <button class="btn btn-primary">Quero começar agora</button>
+      <button class="btn btn-secondary">Ver o que vou aprender</button>
+    </div>
+
+    <div class="social-proof">
+      <div class="avatars">
+        <img src="https://i.pravatar.cc/40?img=1">
+        <img src="https://i.pravatar.cc/40?img=2">
+        <img src="https://i.pravatar.cc/40?img=3">
+      </div>
+      <span id="counter">0</span> alunos já começaram
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="hero-visual">
+
+    <div class="mockup">
+      <pre class="code" id="code"></pre>
+      <div class="output" id="output"></div>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+
+/* CONTADOR */
+const counter = document.getElementById("counter");
+const end = 20000;
+const duration = 1500;
+const startTime = performance.now();
+
+function animateCounter(time){
+  const progress = Math.min((time - startTime) / duration, 1);
+  const eased = 1 - Math.pow(1 - progress, 3);
+
+  const value = Math.floor(eased * end);
+  counter.innerText = value.toLocaleString("pt-BR");
+
+  if(progress < 1){
+    requestAnimationFrame(animateCounter);
+  } else {
+    counter.innerText = "20.000+";
+  }
+}
+
+requestAnimationFrame(animateCounter);
+
+
+/* TYPEWRITER */
+const codeLines = [
+`def saudacao(nome):`,
+`    return f"Olá, {nome}! 👋"`,
+``,
+`def main():`,
+`    nome = "Mundo"`,
+`    mensagem = saudacao(nome)`,
+`    print(mensagem)`,
+``,
+`if __name__ == "__main__":`,
+`    main()`
+];
+
+const codeEl = document.getElementById("code");
+const outputEl = document.getElementById("output");
+
+let lineIndex = 0;
+let charIndex = 0;
+
+function typeLine(){
+  if(lineIndex >= codeLines.length){
+    showOutput();
+    return;
+  }
+
+  const line = codeLines[lineIndex];
+
+  if(charIndex < line.length){
+    codeEl.innerHTML += line.charAt(charIndex);
+    charIndex++;
+    setTimeout(typeLine, 15);
+  } else {
+    codeEl.innerHTML += "\n";
+    lineIndex++;
+    charIndex = 0;
+    setTimeout(typeLine, 120);
+  }
+}
+
+function showOutput(){
+  setTimeout(() => {
+    outputEl.innerText = ">>> Olá, Mundo! 👋";
+    outputEl.classList.add("show");
+  }, 300);
+}
+
+typeLine();
+
+</script>
+
+</body>
+</html>
